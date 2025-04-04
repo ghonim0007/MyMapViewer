@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Map App</title>
+  <!-- ArcGIS API CSS -->
+  <link rel="stylesheet" href="https://js.arcgis.com/3.34/esri/css/esri.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="app-loading">
+  <!-- Loading Indicator -->
+  <div class="loading-indicator" role="presentation">
+    <div class="loading-message" id="loading_message">Loading...</div>
+  </div>
+  <!-- Map Container -->
+  <div id="mapDiv"></div>
+  <!-- Top Panel -->
+  <div id="panelTop">
+    <div id="panelTitle">
+      <h1 id="title">My Map App</h1>
+    </div>
+    <div id="panelTools"></div>
+  </div>
+
+  <!-- Dojo Config and ArcGIS API -->
+  <script>
+    var package_path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+    var dojoConfig = {
+      async: true,
+      packages: [{
+        name: "application",
+        location: package_path + '/js'
+      }]
+    };
+  </script>
+  <script src="https://js.arcgis.com/3.34/"></script>
+  <script>
+    require([
+      "application/main",
+      "application/toolbar",
+      "application/config",
+      "dojo/domReady!"
+    ], function(Main, Toolbar, config) {
+      var app = new Main(config);
+      app.startup();
+    });
+  </script>
+</body>
+</html>
